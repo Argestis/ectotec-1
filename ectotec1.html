@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Green Leaves</title>
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.10/angular-material.css">
+<link rel="stylesheet" type="text/css" href="https://material.angularjs.org/1.1.10/docs.css">
+
+<!-- // AngularJs// -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-messages.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+<script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.10/angular-material.js"></script>
+
+<!-- Google Places */ -->
+<script>document.write('<base href="' + document.location + '" />');</script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+<script src="http://jvandemo.github.io/angularjs-google-maps/dist/angularjs-google-maps.js"></script>
+
+<!-- Main Js -->
+<script src="js/places.js"></script>
+<script src="js/app.js"></script>
+<script src="js/validate.js"></script>
+
+</head>
+<body>
+	<div class="container form-app">
+		<div class="green-rectangle">
+				<div class="title-green-wrap">
+					<h1>Green Leaves</h1>
+				</div>
+				<div class="leave-img-wrap">
+					<img src="images/green-leave.png"/>
+		  	</div>
+			</div>
+		<div id="form-wrap">
+			<form name="myForm" onsubmit="event.preventDefault();">
+				<div class="form-field">
+					<label>Nombre:</label>
+					<input  id="nameIs" type="text" name="nombre"  required/><br />
+				</div>
+				<div class="form-field">
+					<label>E-mail:</label>
+					<input id="emailIs" type="email" name="email"  required/><br />
+				</div>
+				<div class="form-field">
+					<label>Teléfono:</label>
+				  <input id="phoneIs" type="text" name="telefono"   required/><br />
+				</div>
+				<div class="form-field-fecha">
+					<label>Fecha:</label>
+					<input id="dateIs" type="hidden" name="fecha" ng-model="myInput"  required/><br />
+					<md-content id="pickADate" ng-app="myapp" ng-controller="AppCtrl as ctrl" layout-padding="" layout-margin="" class="datepickerdemoMoment">
+					  <md-datepicker ng-model="ctrl.myDate" ng-change="ctrl.onDateChanged()" md-placeholder="Enter date">
+						</md-datepicker>
+					  Date: {{ctrl.myDate | date: 'dd-MMM-yyyy'}}
+					</md-content>
+			  </div>
+				<div id="places" class="form-field" ng-app="places" ng-controller="MainCtrl">
+					<label>	Ciudad y Estado:</label>
+					<!-- <input type="text" name="ciudad" /><br /> -->
+	    		<input id="locationIs" type="text" gm-places-autocomplete ng-model="autocomplete" name="direccion" placeholder="{{Placeholder}}" style="width: 300px;"/>
+				</div>
+				<input id="address" type="hidden"/>
+				<div class="submit-btn">
+					<input type="submit" value="Enviar" onclick="validateForm()"/>
+				</div>
+			</form>
+			<ul id="error-msg"></ul>
+		</div>
+
+		<div id="success" class="hide" ng-app="mymsg" ng-controller="mymsgCtrl">
+			<p>
+				Estimado {{nombre}}
+			</p>
+			<br>
+			<p>
+				Hemos recibido sus datos y nos pondremos en contacto con usted en la brevedad posible. Enviaremos<br>
+				un correo con información a su cuenta: <a href="mailto:{{correo}}">{{correo}}</a>
+			</p>
+			<p class="footer-text">
+				Atte.<br>
+				<span class="green-leaves">Green Leaves</span><br>
+				<span class="fecha-direccion">{{direccion}} a {{fecha}}</span>
+			</p>
+		<div>
+
+	</div>
+</body>
+</html>
