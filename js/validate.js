@@ -3,8 +3,9 @@ function validateForm() {
     var email     = document.forms["myForm"]["email"].value;
     var telefono  = document.forms["myForm"]["telefono"].value;
     var fecha     = document.forms["myForm"]["fecha"].value;
-    var direccion = document.forms["myForm"]["direccion"].value;
+    var temp      = document.forms["myForm"]["temp"].value;
     var errors    = [];
+
 
     document.getElementById('error-msg').innerHTML = "";
 
@@ -57,14 +58,14 @@ function validateForm() {
       errors.push('El campo de fecha es requerido.');
     }
     else{
-      document.forms["myForm"]["fecha"].classList.remove("no-valid");
+      document.forms["myForm"]["forLocation"].classList.remove("locacion-requerida");
     }
-    if (direccion == "") {
-      document.forms["myForm"]["direccion"].classList.add("no-valid");
-      errors.push('El campo de direccion es requerido.');
+    if (temp == "") {
+      document.forms["myForm"]["forLocation"].classList.add("locacion-requerida");
+      errors.push('La locación es requerida.');
     }
     else{
-      document.forms["myForm"]["direccion"].classList.remove("no-valid");
+      document.forms["myForm"]["temp"].classList.remove("no-valid");
     }
 
     if (errors.length > 0){
@@ -81,7 +82,7 @@ function validateForm() {
             app.controller('mymsgCtrl', function($scope) {
               $scope.nombre    = document.forms["myForm"]["nombre"].value;
               $scope.correo    = document.forms["myForm"]["email"].value;
-              $scope.direccion = document.forms["myForm"]["direccion"].value;
+              $scope.direccion = document.forms["myForm"]["temp"].value;
               $scope.fecha     = document.forms["myForm"]["fecha"].value;
             });
             angular.element(document).ready(function() {

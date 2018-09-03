@@ -59,10 +59,10 @@
 					  Date: {{ctrl.myDate | date: 'dd-MMM-yyyy'}}
 					</md-content>
 			  </div>
-				<div id="places" class="form-field" ng-app="places" ng-controller="MainCtrl">
-					<label>	Ciudad y Estado:</label>
-					<!-- <input type="text" name="ciudad" /><br /> -->
-	    		<input id="locationIs" type="text" gm-places-autocomplete ng-model="autocomplete" name="direccion" placeholder="{{Placeholder}}" style="width: 300px;"/>
+				<div id="places" class="form-field">
+					<label>	locación:</label>
+					<input type="button" name="forLocation" value="Comparte tu ubicación" onclick="getLocation()"/>
+					<input type="hidden" name="temp" required/>
 				</div>
 				<input id="address" type="hidden"/>
 				<div class="submit-btn">
@@ -84,8 +84,11 @@
 			<p class="footer-text">
 				Atte.<br>
 				<span class="green-leaves">Green Leaves</span><br>
-				<span class="fecha-direccion">{{direccion}} a {{fecha}}</span>
+				<span class="fecha-direccion">{{fecha}}</span>
 			</p>
+		<div>
+		<div id="weather" ng-app="weather" ng-controller="weatherCtrl">
+			<p>Temperatura actual: {{temp}} °C</p>
 		<div>
 
 	</div>
